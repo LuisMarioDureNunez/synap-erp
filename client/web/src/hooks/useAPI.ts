@@ -1,9 +1,6 @@
-// SYNAP - Hook generico para consultas API
-// Autor: Luis Mario Taboada Nunez LMTN
-
 import { useState, useCallback } from 'react';
 import api from '../services/api';
-import { RespuestaAPI } from '../types';
+import type { RespuestaAPI } from '../types';
 
 interface UseAPIState<T> {
   data: T | null;
@@ -26,7 +23,11 @@ export function useAPI<T = any>() {
   ): Promise<T | null> => {
     setState({ data: null, loading: true, error: null });
     try {
-      const response = await api[metodo](url, body || params, params ? { params } : undefined);
+      const config = params ? { params } : undefined;
+      const response = metodo === 'get' || metodo === 'delete'
+        ? await api[metodo](url, config)
+        : await api[metodo](url, body, config);
+      
       const respuesta: RespuestaAPI<T> = response.data;
       if (respuesta.success) {
         setState({ data: respuesta.data || null, loading: false, error: null });

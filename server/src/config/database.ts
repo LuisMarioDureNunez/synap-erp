@@ -1,4 +1,4 @@
-import { Pool } from 'pg';
+const { Pool } = require('pg');
 
 const poolConfig = {
   host: process.env.DB_HOST || 'localhost',
@@ -12,25 +12,24 @@ const poolConfig = {
 };
 
 class DatabaseConnection {
-  private static pool: Pool;
+  static pool = null;
 
-  static getInstance(): Pool {
+  static getInstance() {
     if (!DatabaseConnection.pool) {
       DatabaseConnection.pool = new Pool(poolConfig);
-      DatabaseConnection.pool.on('error', (err: Error) => {
+      DatabaseConnection.pool.on('error', (err) => {
         console.error('SYNAP DB ERROR:', err.message);
       });
     }
     return DatabaseConnection.pool;
   }
 
-  static async query(text: string, params?: any[]): Promise<any> {
+  static async query(text, params) {
     const pool = DatabaseConnection.getInstance();
-    const result = await pool.query(text, params);
-    return result;
+    return await pool.query(text, params);
   }
 
-  static async transaction(callback: (client: any) => Promise<any>): Promise<any> {
+  static async transaction(callback) {
     const pool = DatabaseConnection.getInstance();
     const client = await pool.connect();
     try {

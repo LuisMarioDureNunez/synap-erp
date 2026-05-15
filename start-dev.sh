@@ -5,15 +5,15 @@ echo "Autor: Luis Mario Taboada Nunez LMTN"
 echo "========================================"
 
 echo "Iniciando PostgreSQL..."
-sudo service postgresql start 2>/dev/null || echo "PostgreSQL ya esta corriendo o usa Docker"
+sudo service postgresql start 2>/dev/null || echo "PostgreSQL ya esta corriendo"
 
 echo "Ejecutando migraciones..."
-PGPASSWORD=synap_secure_2025 psql -h localhost -U synap_admin -d synap_db -f ~/synap/database/migrations/001_synap_core.sql 2>/dev/null || echo "Migracion ya ejecutada o BD no disponible"
+PGPASSWORD=synap_secure_2025 psql -h localhost -U synap_admin -d synap_db -f ~/synap/database/migrations/001_synap_core.sql 2>/dev/null || echo "Migracion ya ejecutada"
 
 echo ""
 echo "Iniciando backend..."
 cd ~/synap/server
-npx ts-node src/server.ts &
+npx ts-node --transpile-only src/server.ts &
 BACKEND_PID=$!
 
 echo "Iniciando frontend..."
