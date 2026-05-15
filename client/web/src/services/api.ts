@@ -3,7 +3,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -28,6 +28,7 @@ api.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem('synap_refresh_token');
         const usuarioId = localStorage.getItem('synap_usuario_id');
+        if (!refreshToken || !usuarioId) throw new Error('No hay tokens');
         const response = await axios.post(`${API_URL}/auth/refresh`, {
           refresh_token: refreshToken,
           usuario_id: usuarioId,
