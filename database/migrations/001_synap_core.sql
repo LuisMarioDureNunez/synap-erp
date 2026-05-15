@@ -648,10 +648,10 @@ INSERT INTO system.negocios (id, nombre, razon_social, ruc) VALUES
 INSERT INTO auth.usuarios (id, negocio_id, username, password_hash, nombre_completo, rol, verificado) VALUES
 ('00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001',
  'admin', '$2b$12$LJ3m4ys3Lk0TSwHCpNqrSO5YJGHybKvIbPQFzQEtGvCfGqP8pNqTi',
- 'Luis Mario Dure Nuñez', 'super_admin', true);
+ 'Luis Mario Taboada Nuñez', 'super_admin', true);
 
 -- ============================================
 -- FIN DE MIGRACION 001
--- PROPIEDAD DE LUIS MARIO DURE NUÑEZ "LMTN"
+-- PROPIEDAD DE LUIS MARIO TABOADA NUÑEZ "LMTN"
 -- SYNAP - TODOS LOS DERECHOS RESERVADOS
 -- ============================================
