@@ -1,6 +1,7 @@
 // ============================================
-// SYNAP - SERVIDOR PRINCIPAL v1.6
+// SYNAP - SERVIDOR PRINCIPAL v2.0 FINAL
 // AUTOR: LUIS MARIO TABOADA NUNEZ "LMTN"
+// SISTEMA COMPLETO: 9 MODULOS
 // ============================================
 
 import express from 'express';
@@ -21,6 +22,8 @@ import hrRoutes from './modules/hr/hr.routes';
 import schedulingRoutes from './modules/scheduling/scheduling.routes';
 import deliveryRoutes from './modules/delivery/delivery.routes';
 import ecommerceRoutes from './modules/ecommerce/ecommerce.routes';
+import biRoutes from './modules/bi/bi.routes';
+import securityRoutes from './modules/security/security.routes';
 import { errorHandler, notFoundHandler } from './middleware/error.middleware';
 import { securityHeaders } from './middleware/security.middleware';
 
@@ -64,19 +67,17 @@ class SynapServer {
     }));
 
     this.app.use(securityHeaders);
-
     this.app.use(cors({
       origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-ID', 'X-Negocio-ID'],
-      exposedHeaders: ['X-Request-ID', 'X-RateLimit-Remaining', 'X-RateLimit-Reset'],
+      exposedHeaders: ['X-Request-ID'],
       credentials: true,
       maxAge: 86400,
     }));
 
     this.app.use('/api/', rateLimit({ windowMs: 15 * 60 * 1000, max: 500, standardHeaders: true, legacyHeaders: false }));
     this.app.use('/api/auth/login', rateLimit({ windowMs: 15 * 60 * 1000, max: 10 }));
-
     this.app.use(compression({ level: 6, threshold: 1024 }));
     this.app.use(morgan(':method :url :status :response-time ms'));
     this.app.use(express.json({ limit: '10mb' }));
@@ -95,9 +96,9 @@ class SynapServer {
         success: true,
         data: {
           sistema: 'SYNAP',
-          version: '1.0.0',
+          version: '2.0.0',
           autor: 'Luis Mario Taboada Nunez LMTN',
-          modulos: ['auth', 'pos', 'inventory', 'crm', 'finance', 'hr', 'scheduling', 'delivery', 'ecommerce'],
+          modulos: ['auth', 'pos', 'inventory', 'crm', 'finance', 'hr', 'scheduling', 'delivery', 'ecommerce', 'bi', 'security'],
           uptime: process.uptime(),
           timestamp: new Date().toISOString(),
         },
@@ -113,6 +114,8 @@ class SynapServer {
     this.app.use('/api/scheduling', schedulingRoutes);
     this.app.use('/api/delivery', deliveryRoutes);
     this.app.use('/api/ecommerce', ecommerceRoutes);
+    this.app.use('/api/bi', biRoutes);
+    this.app.use('/api/security', securityRoutes);
   }
 
   private configurarManejadoresErrores(): void {
@@ -125,10 +128,10 @@ class SynapServer {
       DatabaseConnection.getInstance();
       this.app.listen(this.port, this.host, () => {
         console.log('========================================');
-        console.log('SYNAP - SISTEMA DE NEGOCIOS AUTOMATIZADO');
+        console.log('SYNAP v2.0 - SISTEMA COMPLETO');
         console.log('Autor: Luis Mario Taboada Nunez LMTN');
         console.log(`Servidor: http://${this.host}:${this.port}`);
-        console.log('Modulos: auth, pos, inventory, crm, finance, hr, scheduling, delivery, ecommerce');
+        console.log('11 modulos activos - Backend 100% completado');
         console.log('========================================');
       });
     } catch (error) {

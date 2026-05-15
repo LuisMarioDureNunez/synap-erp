@@ -1,14 +1,13 @@
 {
   "name": "synap-server",
-  "version": "1.0.0",
-  "description": "SYNAP - Backend API por LMTN",
+  "version": "2.0.0",
+  "description": "SYNAP - Backend API v2.0 por LMTN",
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "db:migrate": "bash ../scripts/migrate.sh",
-    "db:seed": "ts-node src/seeds/seed.ts"
+    "db:migrate": "bash ../scripts/migrate.sh"
   },
   "author": "Luis Mario Taboada Nunez LMTN",
   "license": "UNLICENSED"
