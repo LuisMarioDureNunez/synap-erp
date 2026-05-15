@@ -1,5 +1,5 @@
 // ============================================
-// SYNAP - SERVIDOR PRINCIPAL v1.4
+// SYNAP - SERVIDOR PRINCIPAL v1.5
 // AUTOR: LUIS MARIO TABOADA NUNEZ "LMTN"
 // ============================================
 
@@ -17,6 +17,8 @@ import posRoutes from "./modules/pos/pos.routes";
 import inventoryRoutes from "./modules/inventory/inventory.routes";
 import crmRoutes from "./modules/crm/crm.routes";
 import financeRoutes from "./modules/finance/finance.routes";
+import hrRoutes from "./modules/hr/hr.routes";
+import schedulingRoutes from "./modules/scheduling/scheduling.routes";
 import { errorHandler, notFoundHandler } from "./middleware/error.middleware";
 import { securityHeaders } from "./middleware/security.middleware";
 
@@ -128,7 +130,15 @@ class SynapServer {
           sistema: "SYNAP",
           version: "1.0.0",
           autor: "Luis Mario Taboada Nunez LMTN",
-          modulos: ["auth", "pos", "inventory", "crm", "finance"],
+          modulos: [
+            "auth",
+            "pos",
+            "inventory",
+            "crm",
+            "finance",
+            "hr",
+            "scheduling",
+          ],
           uptime: process.uptime(),
           timestamp: new Date().toISOString(),
         },
@@ -140,6 +150,8 @@ class SynapServer {
     this.app.use("/api/inventory", inventoryRoutes);
     this.app.use("/api/crm", crmRoutes);
     this.app.use("/api/finance", financeRoutes);
+    this.app.use("/api/hr", hrRoutes);
+    this.app.use("/api/scheduling", schedulingRoutes);
   }
 
   private configurarManejadoresErrores(): void {
@@ -156,7 +168,9 @@ class SynapServer {
         console.log("SYNAP - SISTEMA DE NEGOCIOS AUTOMATIZADO");
         console.log("Autor: Luis Mario Taboada Nunez LMTN");
         console.log(`Servidor: http://${this.host}:${this.port}`);
-        console.log("Modulos: auth, pos, inventory, crm, finance");
+        console.log(
+          "Modulos: auth, pos, inventory, crm, finance, hr, scheduling",
+        );
         console.log("========================================");
       });
     } catch (error) {
