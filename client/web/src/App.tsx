@@ -1,4 +1,4 @@
-// SYNAP - Aplicacion Principal Completa
+// SYNAP - Aplicacion Principal - Todos los modulos
 // Autor: Luis Mario Taboada Nunez LMTN
 
 import React from 'react';
@@ -11,7 +11,11 @@ import POS from './pages/POS';
 import Inventory from './pages/Inventory';
 import CRM from './pages/CRM';
 import Finance from './pages/Finance';
+import HR from './pages/HR';
+import Scheduling from './pages/Scheduling';
+import Delivery from './pages/Delivery';
 import BI from './pages/BI';
+import Security from './pages/Security';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
@@ -30,12 +34,12 @@ const App: React.FC = () => {
           <Route path="inventory" element={<Inventory />} />
           <Route path="crm" element={<CRM />} />
           <Route path="finance" element={<Finance />} />
-          <Route path="hr" element={<div className="p-8 text-dark-900 dark:text-white"><h1 className="text-2xl font-bold">RRHH</h1><p className="text-dark-500">Modulo en desarrollo</p></div>} />
-          <Route path="scheduling" element={<div className="p-8 text-dark-900 dark:text-white"><h1 className="text-2xl font-bold">Agenda</h1><p className="text-dark-500">Modulo en desarrollo</p></div>} />
-          <Route path="delivery" element={<div className="p-8 text-dark-900 dark:text-white"><h1 className="text-2xl font-bold">Delivery</h1><p className="text-dark-500">Modulo en desarrollo</p></div>} />
-          <Route path="ecommerce" element={<div className="p-8 text-dark-900 dark:text-white"><h1 className="text-2xl font-bold">E-Commerce</h1><p className="text-dark-500">Modulo en desarrollo</p></div>} />
+          <Route path="hr" element={<HR />} />
+          <Route path="scheduling" element={<Scheduling />} />
+          <Route path="delivery" element={<Delivery />} />
+          <Route path="ecommerce" element={<div className="p-8 text-dark-900 dark:text-white"><h1 className="text-2xl font-bold">E-Commerce</h1><p className="text-dark-500 mt-2">Configuracion de tienda online sincronizada con POS</p><p className="text-dark-400 mt-4">Modulo disponible via API en /api/ecommerce</p></div>} />
           <Route path="bi" element={<BI />} />
-          <Route path="security" element={<div className="p-8 text-dark-900 dark:text-white"><h1 className="text-2xl font-bold">Seguridad</h1><p className="text-dark-500">Modulo en desarrollo</p></div>} />
+          <Route path="security" element={<Security />} />
         </Route>
       </Routes>
     </BrowserRouter>
