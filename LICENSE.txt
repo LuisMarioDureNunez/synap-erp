@@ -1,0 +1,16 @@
+===========================================
+SYNAP - Sistema de Negocios Autoadministrable del Paraguay
+===========================================
+
+PROPIETARIO Y CREADOR:
+    Luis Mario Dure Nuñez "LMTN"
+    Desarrollador, Programador y Disenador Digital
+    Paraguay
+
+COPYRIGHT (C) 2025 LMTN - TODOS LOS DERECHOS RESERVADOS
+
+Este software y su codigo fuente son propiedad exclusiva de Luis Mario Dure Nunez.
+Queda prohibida su reproduccion, distribucion o modificacion sin autorizacion expresa.
+
+SYNAP es una marca registrada de LMTN.
+===========================================

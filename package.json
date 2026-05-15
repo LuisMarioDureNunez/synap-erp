@@ -1,0 +1,17 @@
+{
+  "name": "synap",
+  "version": "1.0.0",
+  "description": "SYNAP - Sistema de Negocios Autoadministrable del Paraguay",
+  "author": "Luis Mario Duré Nuñez LMTN",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client/web && npm install",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client/web && npm run dev\"",
+    "build": "cd client/web && npm run build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "db:migrate": "cd server && npm run db:migrate",
+    "db:seed": "cd server && npm run db:seed"
+  }
+}
