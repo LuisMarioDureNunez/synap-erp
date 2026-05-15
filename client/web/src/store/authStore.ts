@@ -1,9 +1,6 @@
-// SYNAP - Store de Autenticacion Zustand
-// Autor: Luis Mario Taboada Nunez LMTN
-
 import { create } from 'zustand';
 import api from '../services/api';
-import { Usuario, AuthState } from '../types';
+import type { Usuario, AuthState } from '../types';
 
 interface AuthStore extends AuthState {
   login: (username: string, password: string) => Promise<void>;

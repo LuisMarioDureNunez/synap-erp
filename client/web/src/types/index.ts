@@ -1,6 +1,3 @@
-// SYNAP - Tipos Globales Frontend
-// Autor: Luis Mario Taboada Nunez LMTN
-
 export interface Usuario {
   id: string;
   username: string;

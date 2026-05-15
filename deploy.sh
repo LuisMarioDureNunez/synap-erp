@@ -1,19 +1,13 @@
 #!/bin/bash
-# ============================================
-# SYNAP - SCRIPT DE DESPLIEGUE A PRODUCCION
-# AUTOR: LUIS MARIO TABOADA NUNEZ LMTN
-# ============================================
-
 echo "========================================"
 echo "SYNAP - DESPLIEGUE A PRODUCCION"
 echo "Autor: Luis Mario Taboada Nunez LMTN"
 echo "========================================"
 
-echo ""
 echo "1. Construyendo backend..."
 cd ~/synap/server
 npm install
-npm run build
+npx tsc
 
 if [ $? -ne 0 ]; then
     echo "ERROR: Fallo la construccion del backend"
@@ -25,7 +19,7 @@ echo ""
 echo "2. Construyendo frontend..."
 cd ~/synap/client/web
 npm install
-npm run build
+npx vite build
 
 if [ $? -ne 0 ]; then
     echo "ERROR: Fallo la construccion del frontend"
@@ -35,7 +29,6 @@ echo "Frontend construido exitosamente."
 
 echo ""
 echo "3. Preparando archivos para despliegue..."
-
 cd ~/synap
 mkdir -p deploy
 cp -r server/dist deploy/
@@ -61,6 +54,4 @@ echo ""
 echo "PARA SUBIR A NETLIFY:"
 echo "1. Crear cuenta en https://netlify.com"
 echo "2. Arrastrar carpeta: ~/synap/client/web/dist"
-echo "3. O conectar repositorio Git"
-echo ""
 echo "========================================"
